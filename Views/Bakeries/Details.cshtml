@@ -1,0 +1,54 @@
+﻿@model MinhaPadoca.Models.Bakery
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+
+                
+ 
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nome</label>
+                <input asp-for="Name" class="form-control" disabled />
+
+                <div class="col-12">
+                    <label asp-for="Address.Street" class="form-label">Logradouro</label>
+                    <input type="text" class="form-control" asp-for="Address.Street" data-val="true" disabled>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="Address.Number" class="form-label">Número</label>
+                    <input type="text" class="form-control" asp-for="Address.Number "disabled>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Address.Neighborhood" class="form-label">Bairro</label>
+                    <input type="text" class="form-control" asp-for="Address.Neighborhood" disabled>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Address.Complement" class="form-label">Complemento</label>
+                    <input type="text" class="form-control" asp-for="Address.Complement" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Address.City" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" asp-for="Address.City" disabled>
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="Address.State" class="form-label">Estado</label>
+                    <input type="text" class="form-control" asp-for="Address.State" maxlength="2" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Address.ZipCode" class="form-label">Cep</label>
+                    <input type="text" class="form-control" asp-for="Address.ZipCode" maxlength="9" disabled>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <a href="/Home/Index" class="btn btn-secondary" style="text-decoration: none;">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>

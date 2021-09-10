@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<MinhaPadoca.Models.Bakery>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="">
+    <h1 class="display-4 text-center ">Padarias</h1>
+    <button type="button" class="btn btn-success" id="btn-new">Novo</button>
+    <table class="table table-hover">
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>
+                    @Html.ActionLink("Detalhes", "Details", "Bakeries", new { id = item.Id }, new { @class = "btn btn-secondary" })
+                    @Html.ActionLink("Editar", "Edit", "Bakeries", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Ecluir", "Delete", "Bakeries", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="modal" class="modal fade" role="dialog" />
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#btn-new").click('shown.bs.modal',function () {
+                $("#modal").load("/Bakeries/Index").modal();
+            });
+
+        })
+
+    </script>
+}

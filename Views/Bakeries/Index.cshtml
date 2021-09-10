@@ -1,0 +1,89 @@
+﻿@model MinhaPadoca.Models.Bakery
+
+@{
+    Layout = null;
+}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Adicionar Padaria</h5>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <form asp-action="Create" method="post">
+            <div class="modal-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Nome</label>
+                    <input asp-for="Name" class="form-control" id="inputName" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                    <div class="col-12">
+                        <label asp-for="Address.Street" class="form-label">Logradouro</label>
+                        <input type="text" class="form-control" asp-for="Address.Street" data-val="true" placeholder="Rua Das Flores">
+                        <span asp-validation-for="Address.Street" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="Address.Number" class="form-label">Número</label>
+                        <input type="text" class="form-control" asp-for="Address.Number">
+                        <span asp-validation-for="Address.Number" class="text-danger"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Address.Neighborhood" class="form-label">Bairro</label>
+                        <input type="text" class="form-control" asp-for="Address.Neighborhood">
+                        <span asp-validation-for="Address.Neighborhood" class="text-danger"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Address.Complement" class="form-label">Complemento</label>
+                        <input type="text" class="form-control" asp-for="Address.Complement" placeholder=" box, andar ">
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Address.City" class="form-label">Cidade</label>
+                        <input type="text" class="form-control" asp-for="Address.City">
+                        <span asp-validation-for="Address.City" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="Address.State" class="form-label">Estado</label>
+                        <input type="text" class="form-control" asp-for="Address.State" maxlength="2">
+                        <span asp-validation-for="Address.State" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Address.ZipCode" class="form-label">Cep</label>
+                        <input type="text" class="form-control" asp-for="Address.ZipCode" maxlength="9">
+                        <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a href="/Home/Index" class="btn btn-secondary" style="text-decoration: none;">Voltar</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        $("#inputName").change(function () {
+                   var name = $("#inputName").val();
+                   console.log(name);
+                   $.ajax({
+                       type: "GET",
+                       url: '@Url.Action("GetByName")',
+                       data: { name: name },
+                       success: function (result) {
+                           if (result != null) {
+                               alert(result);
+                           }
+                       }
+                    });
+
+                });
+
+    </script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+}
+

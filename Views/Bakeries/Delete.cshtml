@@ -1,0 +1,33 @@
+﻿@model MinhaPadoca.Models.Bakery
+
+@{
+    ViewData["Title"] = "Excluir";
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#modal").modal();
+        });
+
+    </script>
+}
+
+
+<div  id="modal" class="modal fade" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir</h5>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <p >Deseja excluir o item @Model.Name ?</p>
+                    <input type="submit" value="Delete" class="btn btn-danger"/> 
+                    <a href="/Home/Index" type="button" class="btn btn-secondary" style="text-decoration: none;">Cancelar</a>
+                </form>
+            </div>           
+        </div>
+    </div>
+</div>
